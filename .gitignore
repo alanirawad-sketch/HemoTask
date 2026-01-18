@@ -1,0 +1,13 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Rust
+target/
+
+# OS
+.DS_Store
+
+# Logs
+*.log

@@ -1,0 +1,263 @@
+/* ==============================
+   Design System (Theme)
+============================== */
+:root {
+    --primary: #0f4c75;
+    --primary-light: #3282b8;
+    --primary-dark: #0b3954;
+
+    --accent: #e63946;
+    --success: #16a34a;
+    --warning: #f59e0b;
+    --danger: #dc2626;
+
+    --bg-main: #f3f6fb;
+    --bg-card: #ffffff;
+    --bg-soft: #f9fafb;
+
+    --text-main: #1f2933;
+    --text-muted: #6b7280;
+
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+/* ==============================
+   Reset & Base
+============================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==============================
+   Header
+============================== */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: linear-gradient(135deg,
+            var(--primary-dark),
+            var(--primary),
+            var(--primary-light));
+    color: white;
+    padding: 26px 36px;
+    box-shadow: var(--shadow-md);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+header p {
+    margin: 6px 0 0;
+    opacity: 0.9;
+    font-size: 0.95rem;
+}
+
+/* ==============================
+   Main Layout
+============================== */
+main {
+    padding: 36px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 28px;
+}
+
+/* ==============================
+   Sections (Panels)
+============================== */
+section {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+section:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+h2 {
+    margin: 0 0 18px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--primary);
+    letter-spacing: 0.2px;
+}
+
+/* ==============================
+   Cards (Tasks & Technicians)
+============================== */
+.card {
+    background: var(--bg-soft);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    box-shadow: inset 0 0 0 1px #e5e7eb;
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.card:hover {
+    background: #ffffff;
+    transform: scale(1.01);
+    box-shadow: var(--shadow-sm);
+}
+
+.card strong {
+    font-weight: 600;
+}
+
+/* ==============================
+   Priority Indicators
+============================== */
+.priority-Routine {
+    border-left: 6px solid var(--success);
+}
+
+.priority-Urgent {
+    border-left: 6px solid var(--warning);
+}
+
+.priority-Emergency {
+    border-left: 6px solid var(--danger);
+    background: linear-gradient(90deg,
+            rgba(220, 38, 38, 0.08),
+            transparent 60%);
+}
+
+/* ==============================
+   Overload Warning
+============================== */
+.overloaded {
+    background: linear-gradient(90deg,
+            rgba(220, 38, 38, 0.12),
+            rgba(254, 226, 226, 0.4));
+    box-shadow: inset 0 0 0 1px #fecaca;
+}
+
+/* ==============================
+   Forms
+============================== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+input,
+select {
+    padding: 11px 14px;
+    border-radius: var(--radius-md);
+    border: 1px solid #d1d5db;
+    font-size: 0.95rem;
+    background: white;
+    transition:
+        border 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 4px rgba(50, 130, 184, 0.18);
+    transform: translateY(-1px);
+}
+
+/* ==============================
+   Buttons
+============================== */
+button {
+    background: linear-gradient(135deg,
+            var(--primary),
+            var(--primary-light));
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        opacity 0.15s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+    opacity: 0.95;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* Secondary buttons (optional future use) */
+button.secondary {
+    background: #e5e7eb;
+    color: var(--text-main);
+}
+
+button.secondary:hover {
+    background: #d1d5db;
+}
+
+/* ==============================
+   Subtle Animations
+============================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.3s ease;
+}
+
+/* ==============================
+   Responsive Tweaks
+============================== */
+@media (max-width: 700px) {
+    header {
+        text-align: center;
+        padding: 22px;
+    }
+
+    main {
+        padding: 18px;
+    }
+}

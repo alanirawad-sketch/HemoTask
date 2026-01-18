@@ -1,30 +1,35 @@
 /* ==============================
-   Design System (Theme)
+   Design System (Refined Theme)
 ============================== */
 :root {
     --primary: #0f4c75;
-    --primary-light: #3282b8;
+    --primary-light: #3a8fd8;
     --primary-dark: #0b3954;
 
     --accent: #e63946;
-    --success: #16a34a;
+    --success: #22c55e;
     --warning: #f59e0b;
-    --danger: #dc2626;
+    --danger: #ef4444;
 
-    --bg-main: #f3f6fb;
-    --bg-card: #ffffff;
-    --bg-soft: #f9fafb;
+    --bg-main: radial-gradient(circle at top,
+            #f7faff,
+            #eef2f7 60%,
+            #e9eef5);
+    --bg-card: rgba(255, 255, 255, 0.78);
+    --bg-soft: rgba(255, 255, 255, 0.6);
 
-    --text-main: #1f2933;
+    --text-main: #1f2937;
     --text-muted: #6b7280;
 
-    --radius-lg: 16px;
-    --radius-md: 12px;
-    --radius-sm: 8px;
+    --radius-lg: 18px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
 
-    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+    --shadow-sm: 0 4px 12px rgba(15, 76, 117, 0.12);
+    --shadow-md: 0 18px 40px rgba(15, 76, 117, 0.18);
+    --shadow-lg: 0 30px 80px rgba(15, 76, 117, 0.25);
+
+    --blur: blur(14px);
 }
 
 /* ==============================
@@ -34,96 +39,119 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--bg-main);
     color: var(--text-main);
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
 }
 
 /* ==============================
-   Header
+   Header (Premium Look)
 ============================== */
 header {
     position: sticky;
     top: 0;
-    z-index: 10;
-    background: linear-gradient(135deg,
-            var(--primary-dark),
-            var(--primary),
-            var(--primary-light));
+    z-index: 20;
+    padding: 28px 40px;
     color: white;
-    padding: 26px 36px;
+    background:
+        linear-gradient(135deg,
+            rgba(15, 76, 117, 0.92),
+            rgba(58, 143, 216, 0.92));
+    backdrop-filter: blur(10px);
     box-shadow: var(--shadow-md);
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.9rem;
-    font-weight: 700;
-    letter-spacing: 0.3px;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.4px;
 }
 
 header p {
-    margin: 6px 0 0;
-    opacity: 0.9;
+    margin-top: 6px;
     font-size: 0.95rem;
+    opacity: 0.9;
 }
 
 /* ==============================
    Main Layout
 ============================== */
 main {
-    padding: 36px;
+    padding: 42px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 28px;
+    gap: 32px;
 }
 
 /* ==============================
-   Sections (Panels)
+   Sections (Glass Panels)
 ============================== */
 section {
     background: var(--bg-card);
+    backdrop-filter: var(--blur);
     border-radius: var(--radius-lg);
-    padding: 22px;
+    padding: 26px;
     box-shadow: var(--shadow-md);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
 }
 
 section:hover {
-    transform: translateY(-3px);
+    transform: translateY(-6px);
     box-shadow: var(--shadow-lg);
 }
 
 h2 {
-    margin: 0 0 18px;
-    font-size: 1.15rem;
-    font-weight: 600;
+    margin: 0 0 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
     color: var(--primary);
-    letter-spacing: 0.2px;
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 36px;
+    height: 3px;
+    border-radius: 10px;
+    background: linear-gradient(90deg,
+            var(--primary),
+            var(--primary-light));
 }
 
 /* ==============================
-   Cards (Tasks & Technicians)
+   Cards (Elevated + Clean)
 ============================== */
 .card {
     background: var(--bg-soft);
     border-radius: var(--radius-md);
-    padding: 14px 16px;
+    padding: 16px 18px;
     margin-bottom: 14px;
-    box-shadow: inset 0 0 0 1px #e5e7eb;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
     transition:
-        background 0.2s ease,
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
+        background 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    animation: fadeUp 0.35s ease both;
 }
 
 .card:hover {
-    background: #ffffff;
-    transform: scale(1.01);
+    background: white;
+    transform: translateY(-2px) scale(1.01);
     box-shadow: var(--shadow-sm);
 }
 
@@ -144,18 +172,20 @@ h2 {
 
 .priority-Emergency {
     border-left: 6px solid var(--danger);
-    background: linear-gradient(90deg,
-            rgba(220, 38, 38, 0.08),
-            transparent 60%);
+    background:
+        linear-gradient(90deg,
+            rgba(239, 68, 68, 0.14),
+            transparent 65%);
 }
 
 /* ==============================
    Overload Warning
 ============================== */
 .overloaded {
-    background: linear-gradient(90deg,
-            rgba(220, 38, 38, 0.12),
-            rgba(254, 226, 226, 0.4));
+    background:
+        linear-gradient(90deg,
+            rgba(239, 68, 68, 0.18),
+            rgba(254, 226, 226, 0.45));
     box-shadow: inset 0 0 0 1px #fecaca;
 }
 
@@ -165,61 +195,62 @@ h2 {
 form {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
 }
 
 input,
 select {
-    padding: 11px 14px;
+    padding: 12px 16px;
     border-radius: var(--radius-md);
     border: 1px solid #d1d5db;
     font-size: 0.95rem;
     background: white;
     transition:
-        border 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.15s ease;
+        border 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.2s ease;
 }
 
 input:focus,
 select:focus {
     outline: none;
     border-color: var(--primary-light);
-    box-shadow: 0 0 0 4px rgba(50, 130, 184, 0.18);
+    box-shadow: 0 0 0 4px rgba(58, 143, 216, 0.2);
     transform: translateY(-1px);
 }
 
 /* ==============================
-   Buttons
+   Buttons (Modern CTA)
 ============================== */
 button {
-    background: linear-gradient(135deg,
+    background:
+        linear-gradient(135deg,
             var(--primary),
             var(--primary-light));
     color: white;
     border: none;
     border-radius: var(--radius-md);
-    padding: 10px 16px;
+    padding: 12px 18px;
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
+    letter-spacing: 0.3px;
     transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease,
-        opacity 0.15s ease;
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.18s ease;
 }
 
 button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
-    opacity: 0.95;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(15, 76, 117, 0.35);
 }
 
 button:active {
-    transform: scale(0.97);
+    transform: scale(0.96);
 }
 
-/* Secondary buttons (optional future use) */
+/* Secondary Button */
 button.secondary {
     background: #e5e7eb;
     color: var(--text-main);
@@ -230,22 +261,18 @@ button.secondary:hover {
 }
 
 /* ==============================
-   Subtle Animations
+   Animations
 ============================== */
-@keyframes fadeIn {
+@keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateY(10px);
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.card {
-    animation: fadeIn 0.3s ease;
 }
 
 /* ==============================
@@ -258,6 +285,6 @@ button.secondary:hover {
     }
 
     main {
-        padding: 18px;
+        padding: 20px;
     }
 }

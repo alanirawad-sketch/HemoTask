@@ -1,297 +1,140 @@
-/* ==============================
-   Design System (Refined Theme)
-============================== */
 :root {
     --primary: #0f4c75;
     --primary-light: #3a8fd8;
-    --primary-dark: #0b3954;
-
     --accent: #e63946;
     --success: #22c55e;
     --warning: #f59e0b;
     --danger: #ef4444;
-
-    --bg-main: radial-gradient(circle at top,
-            #f7faff,
-            #eef2f7 60%,
-            #e9eef5);
-    --bg-card: rgba(255, 255, 255, 0.78);
-    --bg-soft: rgba(255, 255, 255, 0.6);
-
-    --text-main: #1f2937;
-    --text-muted: #6b7280;
-
-    --radius-lg: 18px;
-    --radius-md: 14px;
-    --radius-sm: 10px;
-
-    --shadow-sm: 0 4px 12px rgba(15, 76, 117, 0.12);
-    --shadow-md: 0 18px 40px rgba(15, 76, 117, 0.18);
-    --shadow-lg: 0 30px 80px rgba(15, 76, 117, 0.25);
-
-    --blur: blur(14px);
+    --bg: #f4f6f9;
+    --card: rgba(255,255,255,0.8);
+    --radius: 14px;
+    --shadow: 0 18px 40px rgba(0,0,0,0.12);
 }
 
-/* ==============================
-   Reset & Base
-============================== */
 * {
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     margin: 0;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg-main);
-    color: var(--text-main);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: #1f2937;
 }
 
-/* ==============================
-   Header (Premium Look)
-============================== */
+/* HEADER */
+
 header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    padding: 28px 40px;
+    padding: 28px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
     color: white;
-    background:
-        linear-gradient(135deg,
-            rgba(15, 76, 117, 0.92),
-            rgba(58, 143, 216, 0.92));
-    backdrop-filter: blur(10px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow);
 }
 
 header h1 {
     margin: 0;
     font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: 0.4px;
 }
 
 header p {
     margin-top: 6px;
-    font-size: 0.95rem;
     opacity: 0.9;
 }
 
-/* ==============================
-   Main Layout
-============================== */
+/* LAYOUT */
+
 main {
-    padding: 42px;
+    padding: 32px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 32px;
+    gap: 28px;
 }
 
-/* ==============================
-   Sections (Glass Panels)
-============================== */
+/* SECTIONS */
+
 section {
-    background: var(--bg-card);
-    backdrop-filter: var(--blur);
-    border-radius: var(--radius-lg);
-    padding: 26px;
-    box-shadow: var(--shadow-md);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    transition:
-        transform 0.35s ease,
-        box-shadow 0.35s ease;
+    background: var(--card);
+    backdrop-filter: blur(14px);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: var(--shadow);
 }
 
-section:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
+section.highlight {
+    border-left: 6px solid var(--accent);
 }
 
 h2 {
-    margin: 0 0 20px;
-    font-size: 1.2rem;
-    font-weight: 700;
+    margin: 0 0 16px;
     color: var(--primary);
-    position: relative;
 }
 
-h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 36px;
-    height: 3px;
-    border-radius: 10px;
-    background: linear-gradient(90deg,
-            var(--primary),
-            var(--primary-light));
-}
+/* CARDS */
 
-/* ==============================
-   Cards (Elevated + Clean)
-============================== */
 .card {
-    background: var(--bg-soft);
-    border-radius: var(--radius-md);
-    padding: 16px 18px;
-    margin-bottom: 14px;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-    transition:
-        background 0.25s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-    animation: fadeUp 0.35s ease both;
-}
-
-.card:hover {
     background: white;
-    transform: translateY(-2px) scale(1.01);
-    box-shadow: var(--shadow-sm);
+    padding: 14px 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
 }
 
-.card strong {
-    font-weight: 600;
-}
-
-/* ==============================
-   Priority Indicators
-============================== */
 .priority-Routine {
-    border-left: 6px solid var(--success);
+    border-left: 5px solid var(--success);
 }
 
 .priority-Urgent {
-    border-left: 6px solid var(--warning);
+    border-left: 5px solid var(--warning);
 }
 
 .priority-Emergency {
-    border-left: 6px solid var(--danger);
-    background:
-        linear-gradient(90deg,
-            rgba(239, 68, 68, 0.14),
-            transparent 65%);
+    border-left: 5px solid var(--danger);
 }
 
-/* ==============================
-   Overload Warning
-============================== */
 .overloaded {
-    background:
-        linear-gradient(90deg,
-            rgba(239, 68, 68, 0.18),
-            rgba(254, 226, 226, 0.45));
-    box-shadow: inset 0 0 0 1px #fecaca;
+    background: rgba(239,68,68,0.15);
 }
 
-/* ==============================
-   Forms
-============================== */
+/* FORMS */
+
 form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
 }
 
-input,
-select {
-    padding: 12px 16px;
-    border-radius: var(--radius-md);
+input, select {
+    padding: 12px 14px;
+    border-radius: 12px;
     border: 1px solid #d1d5db;
     font-size: 0.95rem;
-    background: white;
-    transition:
-        border 0.25s ease,
-        box-shadow 0.25s ease,
-        transform 0.2s ease;
 }
 
-input:focus,
-select:focus {
+input:focus, select:focus {
     outline: none;
     border-color: var(--primary-light);
-    box-shadow: 0 0 0 4px rgba(58, 143, 216, 0.2);
-    transform: translateY(-1px);
 }
 
-/* ==============================
-   Buttons (Modern CTA)
-============================== */
+/* BUTTONS */
+
 button {
-    background:
-        linear-gradient(135deg,
-            var(--primary),
-            var(--primary-light));
-    color: white;
+    padding: 12px;
+    border-radius: 12px;
     border: none;
-    border-radius: var(--radius-md);
-    padding: 12px 18px;
-    font-size: 0.95rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
     font-weight: 700;
     cursor: pointer;
-    letter-spacing: 0.3px;
-    transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        opacity 0.18s ease;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 36px rgba(15, 76, 117, 0.35);
+    opacity: 0.9;
 }
 
-button:active {
-    transform: scale(0.96);
-}
+/* FOOTER */
 
-/* Secondary Button */
-button.secondary {
-    background: #e5e7eb;
-    color: var(--text-main);
-}
-
-button.secondary:hover {
-    background: #d1d5db;
-}
-
-/* ==============================
-   Animations
-============================== */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ==============================
-   Responsive Tweaks
-============================== */
-@media (max-width: 700px) {
-    header {
-        text-align: center;
-        padding: 22px;
-    }
-
-    main {
-        padding: 20px;
-    }
-}
-
-.technician-item {
-    padding: 10px;
-    margin-bottom: 8px;
-    background: #f4f6f9;
-    border-radius: 8px;
+footer {
+    text-align: center;
+    padding: 18px;
+    opacity: 0.6;
 }

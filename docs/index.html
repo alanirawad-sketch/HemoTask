@@ -1,132 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>HemoTask | Technician Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Main Styles -->
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <header>
+        <h1>🩸 HemoTask</h1>
+        <p>Blood Bank Technician Workflow Dashboard</p>
+    </header>
 
-    <!-- App Wrapper -->
-    <div class="app-container">
+    <main>
+        <!-- TECHNICIANS -->
+        <section>
+            <h2>Technicians</h2>
+            <div id="technician-list"></div>
+        </section>
 
-        <!-- Header -->
-        <header class="app-header">
-            <div class="header-left">
-                <h1>🩸 HemoTask</h1>
-                <p>Blood Bank Technician Workflow Dashboard</p>
-            </div>
+        <!-- ADD TECHNICIAN -->
+        <section>
+            <h2>Add Technician</h2>
+            <form id="technician-form">
+                <input id="tech-name" placeholder="Technician code name" required>
+                <input id="tech-skills" placeholder="Skills (comma separated)" required>
+                <button type="submit">➕ Add Technician</button>
+            </form>
+        </section>
 
-            <div class="header-right">
-                <label for="tech-select">Active Technician</label>
-                <select id="tech-select">
-                    <option value="">Select Technician</option>
+        <!-- TASKS -->
+        <section>
+            <h2>Tasks</h2>
+            <div id="task-list"></div>
+        </section>
+
+        <!-- CREATE TASK -->
+        <section class="highlight">
+            <h2>Create New Task</h2>
+            <form id="task-form">
+                <input id="task-type" placeholder="Task name" required>
+
+                <select id="required-skill">
+                    <option>Crossmatch</option>
+                    <option>Grouping</option>
+                    <option>Inventory</option>
                 </select>
-            </div>
-        </header>
 
-        <!-- Main Content -->
-        <main class="dashboard">
+                <select id="priority">
+                    <option>Routine</option>
+                    <option>Urgent</option>
+                    <option>Emergency</option>
+                </select>
 
-            <!-- Technicians Section -->
-            <section class="card">
-                <div class="card-header">
-                    <h2>Technicians</h2>
-                </div>
-                <div id="technician-list" class="card-content">
-                    <!-- Technicians loaded here -->
-                </div>
-             <!-- Add Technician Section -->
-<section class="card">
-    <div class="card-header">
-        <h2>Add Technician</h2>
-    </div>
-    <div class="card-content">
-        <input 
-            type="text" 
-            id="technician-name-input" 
-            placeholder="Enter technician name"
-        >
-        <button onclick="addTechnician()">Add Technician</button>
-    </div>
-</section>
-            </section>
+                <button type="submit">➕ Create Task</button>
+            </form>
+        </section>
+    </main>
 
+    <footer>
+        © 2026 HemoTask • Health Informatics Project
+    </footer>
 
-            <!-- Tasks Section -->
-            <section class="card">
-                <div class="card-header">
-                    <h2>Tasks</h2>
-                </div>
-                <div id="task-list" class="card-content">
-                    <!-- Tasks loaded here -->
-                </div>
-                 <!-- Create Task Section -->
-            <section class="card highlight">
-                <div class="card-header">
-                    <h2>Create New Task</h2>
-                </div>
-
-                <form id="task-form" class="task-form">
-
-                    <div class="form-group">
-                        <label for="task-type">Task Name</label>
-                        <input type="text" id="task-type" placeholder="e.g. Emergency Crossmatch" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="required-skill">Required Skill</label>
-                        <select id="required-skill">
-                            <option value="Crossmatch">Crossmatch</option>
-                            <option value="Grouping">Grouping</option>
-                            <option value="Inventory">Inventory</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="priority">Priority Level</label>
-                        <select id="priority">
-                            <option value="Routine">Routine</option>
-                            <option value="Urgent">Urgent</option>
-                            <option value="Emergency">Emergency</option>
-                        </select>
-                    </div>
- <input 
-            type="text" 
-            id="technician-name-input" 
-            placeholder="Enter technician name"
-        >
-                    </div>
-        <button onclick="addTechnician()">Add Technician</button>
-                    <button type="submit" class="btn-primary">
-                        ➕ Create Task
-                    </button>
-
-                </form>
-            </section>
-
-            </section>
-
-           </main>
-
-        <!-- Footer -->
-        <footer class="app-footer">
-            <p>© 2026 HemoTask • Health Informatics Project</p>
-        </footer>
-
-    </div>
-
-    <!-- App Script -->
     <script src="app.js"></script>
-
 </body>
-
 </html>

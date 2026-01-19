@@ -288,3 +288,10 @@ button.secondary:hover {
         padding: 20px;
     }
 }
+
+.technician-item {
+    padding: 10px;
+    margin-bottom: 8px;
+    background: #f4f6f9;
+    border-radius: 8px;
+}

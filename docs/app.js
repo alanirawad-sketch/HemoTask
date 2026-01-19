@@ -207,3 +207,67 @@ function renderTechnicians() {
         container.appendChild(div);
     });
 }
+
+/* ==============================
+   Data Storage
+============================== */
+let technicians = [];
+let tasks = [];
+
+/* ==============================
+   Add Technician
+============================== */
+function addTechnician() {
+    const input = document.getElementById("technicianName");
+    const name = input.value.trim();
+
+    if (name === "") return;
+
+    technicians.push(name);
+    input.value = "";
+
+    renderTechnicians();
+}
+
+/* ==============================
+   Render Technicians
+============================== */
+function renderTechnicians() {
+    const list = document.getElementById("techniciansList");
+    list.innerHTML = "";
+
+    technicians.forEach((tech) => {
+        const li = document.createElement("li");
+        li.textContent = tech;
+        list.appendChild(li);
+    });
+}
+
+/* ==============================
+   Add Task
+============================== */
+function addTask() {
+    const input = document.getElementById("taskTitle");
+    const title = input.value.trim();
+
+    if (title === "") return;
+
+    tasks.push(title);
+    input.value = "";
+
+    renderTasks();
+}
+
+/* ==============================
+   Render Tasks
+============================== */
+function renderTasks() {
+    const list = document.getElementById("tasksList");
+    list.innerHTML = "";
+
+    tasks.forEach((task) => {
+        const li = document.createElement("li");
+        li.textContent = task;
+        list.appendChild(li);
+    });
+}

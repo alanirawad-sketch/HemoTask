@@ -178,3 +178,32 @@ loadTechnicianSelector();
 refreshUI();
 
 setInterval(refreshUI, 10000);
+
+// Store technicians in memory
+let technicians = [];
+
+// Called when button is clicked
+function addTechnician() {
+    const input = document.getElementById("technician-name-input");
+    const name = input.value.trim();
+
+    if (name === "") return;
+
+    technicians.push(name);
+    input.value = "";
+
+    renderTechnicians();
+}
+
+// Update the Technicians section
+function renderTechnicians() {
+    const container = document.getElementById("technician-list");
+    container.innerHTML = "";
+
+    technicians.forEach(tech => {
+        const div = document.createElement("div");
+        div.className = "technician-item";
+        div.textContent = tech;
+        container.appendChild(div);
+    });
+}

@@ -34,7 +34,7 @@ async function loadTechnicians() {
 
         div.innerHTML = `
             <strong>${t.code_name}</strong><br>
-            Skills: ${t.skills.join(", ") || "—"}<br>
+            Skills: ${t.skills.join(", ")}<br>
             Active tasks: ${t.active_tasks}
         `;
 
@@ -172,34 +172,38 @@ async function loadTechnicianSelector() {
     };
 }
 
-/* ---------------- ADD TECHNICIAN ---------------- */
-
-async function addTechnician() {
-    const input = document.getElementById("technician-name-input");
-    const name = input.value.trim();
-
-    if (name === "") return;
-
-    const technician = {
-        code_name: name,
-        skills: []
-    };
-
-    await apiFetch(`${API_BASE}/technicians`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(technician)
-    });
-
-    input.value = "";
-
-    await loadTechnicians();
-    await loadTechnicianSelector();
-}
-
 /* ---------------- INIT ---------------- */
 
 loadTechnicianSelector();
 refreshUI();
 
 setInterval(refreshUI, 10000);
+
+// Store technicians in memory
+let technicians = [];
+
+// Called when button is clicked
+function addTechnician() {
+    const input = document.getElementById("technician-name-input");
+    const name = input.value.trim();
+
+    if (name === "") return;
+
+    technicians.push(name);
+    input.value = "";
+
+    renderTechnicians();
+}
+
+// Update the Technicians section
+function renderTechnicians() {
+    const container = document.getElementById("technician-list");
+    container.innerHTML = "";
+
+    technicians.forEach(tech => {
+        const div = document.createElement("div");
+        div.className = "technician-item";
+        div.textContent = tech;
+        container.appendChild(div);
+    });
+}

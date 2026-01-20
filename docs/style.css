@@ -60,10 +60,6 @@ section {
     box-shadow: var(--shadow);
 }
 
-section.highlight {
-    border-left: 6px solid var(--accent);
-}
-
 h2 {
     margin: 0 0 16px;
     color: var(--primary);
@@ -91,6 +87,9 @@ h2 {
     border-left: 5px solid var(--danger);
 }
 
+.overloaded { 
+    background: rgba(239,68,68,0.15); 
+}
 
 /* FORMS */
 

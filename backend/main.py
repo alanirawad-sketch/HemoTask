@@ -5,8 +5,8 @@ from uuid import uuid4
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# ⬇️ IMPORT YOUR MODELS (THIS WAS MISSING)
-from models import Task, Technician
+# Import both Create and Full models
+from models import Task, TaskCreate, Technician, TechnicianCreate
 
 app = FastAPI(title="HemoTask API")
 
@@ -57,7 +57,7 @@ def get_tasks():
 
 
 @app.post("/tasks")
-def create_task(task: Task):
+def create_task(task: TaskCreate):  # Use TaskCreate (no ID required)
     tasks = load_json(TASK_FILE)
 
     new_task = {
@@ -83,7 +83,8 @@ def get_technicians():
 
 
 @app.post("/technicians")
-def create_technician(technician: Technician):
+# Use TechnicianCreate (no ID required)
+def create_technician(technician: TechnicianCreate):
     technicians = load_json(TECH_FILE)
 
     new_tech = {

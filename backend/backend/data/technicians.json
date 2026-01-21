@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": "3d2381e7-beea-4bc2-8589-2cfcd3a22dd0",
+    "code_name": "TECK 001",
+    "skills": [
+      "Blood group"
+    ],
+    "active_tasks": 0
+  },
+  {
+    "id": "5db5b8e6-599c-4651-b132-b19f2e0409ca",
+    "code_name": "TECH 002",
+    "skills": [
+      "Crossmatch"
+    ],
+    "active_tasks": 0
+  }
+]

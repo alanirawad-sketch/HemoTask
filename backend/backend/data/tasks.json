@@ -22,5 +22,13 @@
     "priority": "Routine",
     "status": "pending",
     "assigned_to": null
+  },
+  {
+    "id": "69f66f20-cce3-46ae-8547-77c7c4689a40",
+    "task_type": "ewrwe",
+    "required_skill": "Inventory",
+    "priority": "Emergency",
+    "status": "pending",
+    "assigned_to": null
   }
 ]

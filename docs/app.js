@@ -70,9 +70,16 @@ async function loadTechnicians() {
             }
 
             li.innerHTML = `
-                <strong>${tech.code_name}</strong>
-                <small>Skills: ${tech.skills.join(', ')}</small>
-                <small>Active tasks: ${tech.active_tasks}</small>
+                <div class="card-content">
+                    <div>
+                        <strong>${tech.code_name}</strong>
+                        <small>Skills: ${tech.skills.join(', ')}</small>
+                        <small>Active tasks: ${tech.active_tasks}</small>
+                    </div>
+                    <button class="delete-btn" onclick="deleteTechnician('${tech.code_name}')">
+                        🗑️
+                    </button>
+                </div>
             `;
 
             list.appendChild(li);
@@ -82,6 +89,37 @@ async function loadTechnicians() {
     } catch (error) {
         console.error('Error loading technicians:', error);
         showNotification('Failed to load technicians: ' + error.message, 'error');
+    }
+}
+
+/* -------------------- DELETE TECHNICIAN -------------------- */
+
+async function deleteTechnician(codeName) {
+    if (!confirm(`Are you sure you want to delete technician "${codeName}"?`)) {
+        return;
+    }
+
+    showLoading();
+
+    try {
+        console.log('Deleting technician:', codeName);
+
+        const response = await fetch(`${API_BASE}/technicians/${codeName}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to delete technician: ${response.status}`);
+        }
+
+        console.log('Technician deleted successfully');
+        await loadTechnicians();
+        showNotification('Technician deleted successfully!');
+    } catch (error) {
+        console.error('Error deleting technician:', error);
+        showNotification('Failed to delete technician: ' + error.message, 'error');
+    } finally {
+        hideLoading();
     }
 }
 
@@ -150,10 +188,17 @@ async function loadTasks() {
             const statusClass = `status-${task.status.toLowerCase()}`;
 
             li.innerHTML = `
-                <strong>${task.task_type}</strong>
-                <small>Required skill: ${task.required_skill}</small>
-                <small>Status: <span class="${statusClass}">${task.status.replace('_', ' ')}</span></small>
-                <small>Assigned to: ${task.assigned_to || '—'}</small>
+                <div class="card-content">
+                    <div>
+                        <strong>${task.task_type}</strong>
+                        <small>Required skill: ${task.required_skill}</small>
+                        <small>Status: <span class="${statusClass}">${task.status.replace('_', ' ')}</span></small>
+                        <small>Assigned to: ${task.assigned_to || '—'}</small>
+                    </div>
+                    <button class="delete-btn" onclick="deleteTask(${task.task_id})">
+                        🗑️
+                    </button>
+                </div>
             `;
 
             list.appendChild(li);
@@ -163,6 +208,37 @@ async function loadTasks() {
     } catch (error) {
         console.error('Error loading tasks:', error);
         showNotification('Failed to load tasks: ' + error.message, 'error');
+    }
+}
+
+/* -------------------- DELETE TASK -------------------- */
+
+async function deleteTask(taskId) {
+    if (!confirm(`Are you sure you want to delete this task?`)) {
+        return;
+    }
+
+    showLoading();
+
+    try {
+        console.log('Deleting task:', taskId);
+
+        const response = await fetch(`${API_BASE}/tasks/${taskId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to delete task: ${response.status}`);
+        }
+
+        console.log('Task deleted successfully');
+        await loadTasks();
+        showNotification('Task deleted successfully!');
+    } catch (error) {
+        console.error('Error deleting task:', error);
+        showNotification('Failed to delete task: ' + error.message, 'error');
+    } finally {
+        hideLoading();
     }
 }
 

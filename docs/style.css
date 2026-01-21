@@ -239,6 +239,20 @@ ul {
     transform: scaleY(1);
 }
 
+/* Card Content Layout for Delete Button */
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-content>div {
+    flex: 1;
+    min-width: 0;
+    /* Allow text truncation if needed */
+}
+
 .card strong {
     font-size: 1.1rem;
     color: var(--primary);
@@ -369,6 +383,41 @@ button:disabled {
     transform: none;
 }
 
+/* DELETE BUTTON */
+.delete-btn {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border: none;
+    padding: 0.5rem 0.875rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: var(--transition);
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+}
+
+.delete-btn:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.delete-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Ensure delete button doesn't interfere with card hover */
+.card:has(.delete-btn:hover) {
+    transform: translateX(8px);
+}
+
 /* FOOTER */
 footer {
     text-align: center;
@@ -392,5 +441,16 @@ footer {
         right: 10px;
         left: 10px;
         max-width: none;
+    }
+
+    .card-content {
+        gap: 0.5rem;
+    }
+
+    .delete-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 1rem;
+        min-width: 40px;
+        height: 40px;
     }
 }

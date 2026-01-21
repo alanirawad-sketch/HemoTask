@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>HemoTask | Technician Dashboard</title>
@@ -19,55 +20,60 @@
     </header>
 
     <main>
-        <!-- TECHNICIANS -->
-        <section>
+
+        <!-- TECHNICIANS LIST -->
+        <section class="card">
             <h2>Technicians</h2>
-            <div id="technician-list"></div>
+            <ul id="techniciansList"></ul>
         </section>
 
         <!-- ADD TECHNICIAN -->
-        <section>
+        <section class="card">
             <h2>Add Technician</h2>
             <form id="technician-form">
-                <input id="tech-name" placeholder="Technician code name" required>
-                <input id="tech-skills" placeholder="Skills (comma separated)" required>
-                <button type="submit">➕ Add Technician</button>
+                <input id="tech-name" type="text" placeholder="Technician code name" required>
+                <input id="tech-skills" type="text" placeholder="Skills (comma separated)" required>
+                <button type="submit">Add Technician</button>
             </form>
         </section>
 
-        <!-- TASKS -->
-        <section>
+        <!-- TASKS LIST -->
+        <section class="card">
             <h2>Tasks</h2>
-            <div id="task-list"></div>
+            <ul id="tasksList"></ul>
         </section>
 
         <!-- CREATE TASK -->
-        <section class="highlight">
+        <section class="card highlight">
             <h2>Create New Task</h2>
             <form id="task-form">
-                <input id="task-type" placeholder="Task name" required>
+                <input id="task-type" type="text" placeholder="Task name" required>
 
-                <select id="required-skill">
-                    <option>Crossmatch</option>
-                    <option>Grouping</option>
-                    <option>Inventory</option>
+                <select id="required-skill" required>
+                    <option value="Crossmatch">Crossmatch</option>
+                    <option value="Blood group">Blood group</option>
+                    <option value="Inventory">Inventory</option>
                 </select>
 
-                <select id="priority">
-                    <option>Routine</option>
-                    <option>Urgent</option>
-                    <option>Emergency</option>
+                <select id="priority" required>
+                    <option value="">Priority</option>
+                    <option value="Routine">Routine</option>
+                    <option value="Urgent">Urgent</option>
+                    <option value="Emergency">Emergency</option>
                 </select>
 
-                <button type="submit">➕ Create Task</button>
+                <button type="submit">Create Task</button>
             </form>
         </section>
+
     </main>
 
     <footer>
         © 2026 HemoTask • Health Informatics Project
     </footer>
 
+    <!-- JavaScript -->
     <script src="app.js"></script>
 </body>
+
 </html>

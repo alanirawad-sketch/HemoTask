@@ -3,76 +3,98 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>HemoTask | Technician Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Font -->
+    <title>HemoTask | Technician Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
     <header>
         <h1>🩸 HemoTask</h1>
         <p>Blood Bank Technician Workflow Dashboard</p>
     </header>
 
     <main>
-
         <!-- TECHNICIANS LIST -->
-        <section class="card">
-            <h2>Technicians</h2>
-            <ul id="techniciansList"></ul>
+        <section>
+            <div class="section-header">
+                <h2>Technicians</h2>
+                <span class="badge" id="techCount">0</span>
+            </div>
+            <ul id="techniciansList">
+                <li class="empty-state">No technicians available</li>
+            </ul>
         </section>
 
         <!-- ADD TECHNICIAN -->
-        <section class="card">
+        <section>
             <h2>Add Technician</h2>
             <form id="technician-form">
-                <input id="tech-name" type="text" placeholder="Technician code name" required>
-                <input id="tech-skills" type="text" placeholder="Skills (comma separated)" required>
+                <div class="form-group">
+                    <label for="tech-name">Code Name</label>
+                    <input id="tech-name" type="text" placeholder="e.g., TECH-001" required>
+                </div>
+                <div class="form-group">
+                    <label for="tech-skills">Skills</label>
+                    <input id="tech-skills" type="text" placeholder="Crossmatch, Blood group, Inventory" required>
+                </div>
                 <button type="submit">Add Technician</button>
             </form>
         </section>
 
         <!-- TASKS LIST -->
-        <section class="card">
-            <h2>Tasks</h2>
-            <ul id="tasksList"></ul>
+        <section>
+            <div class="section-header">
+                <h2>Tasks</h2>
+                <span class="badge" id="taskCount">0</span>
+            </div>
+            <ul id="tasksList">
+                <li class="empty-state">No tasks available</li>
+            </ul>
         </section>
 
         <!-- CREATE TASK -->
-        <section class="card highlight">
+        <section>
             <h2>Create New Task</h2>
             <form id="task-form">
-                <input id="task-type" type="text" placeholder="Task name" required>
-
-                <select id="required-skill" required>
-                    <option value="Crossmatch">Crossmatch</option>
-                    <option value="Blood group">Blood group</option>
-                    <option value="Inventory">Inventory</option>
-                </select>
-
-                <select id="priority" required>
-                    <option value="">Priority</option>
-                    <option value="Routine">Routine</option>
-                    <option value="Urgent">Urgent</option>
-                    <option value="Emergency">Emergency</option>
-                </select>
-
+                <div class="form-group">
+                    <label for="task-type">Task Name</label>
+                    <input id="task-type" type="text" placeholder="e.g., Emergency Crossmatch" required>
+                </div>
+                <div class="form-group">
+                    <label for="required-skill">Required Skill</label>
+                    <select id="required-skill" required>
+                        <option value="">Select skill...</option>
+                        <option value="Crossmatch">Crossmatch</option>
+                        <option value="Blood group">Blood Group</option>
+                        <option value="Inventory">Inventory</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="priority">Priority</label>
+                    <select id="priority" required>
+                        <option value="">Select priority...</option>
+                        <option value="Routine">Routine</option>
+                        <option value="Urgent">Urgent</option>
+                        <option value="Emergency">Emergency</option>
+                    </select>
+                </div>
                 <button type="submit">Create Task</button>
             </form>
         </section>
-
     </main>
 
     <footer>
         © 2026 HemoTask • Health Informatics Project
     </footer>
 
-    <!-- JavaScript -->
     <script src="app.js"></script>
 </body>
 

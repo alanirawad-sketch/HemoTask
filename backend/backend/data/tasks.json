@@ -38,5 +38,13 @@
     "priority": "Routine",
     "status": "pending",
     "assigned_to": null
+  },
+  {
+    "id": "477a1764-7dad-4be1-89b0-c39c75c4ea87",
+    "task_type": "Crossmatch P67",
+    "required_skill": "Crossmatch",
+    "priority": "Routine",
+    "status": "pending",
+    "assigned_to": null
   }
 ]

@@ -18,10 +18,10 @@ class Technician(BaseModel):
 
 
 class TaskCreate(BaseModel):
-    """Model for creating a new task (no ID needed from client)"""
     task_type: str
     required_skill: str
-    priority: str  # Routine | Urgent | Emergency
+    priority: str
+    assigned_to: Optional[str] = None
 
 
 class Task(BaseModel):

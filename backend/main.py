@@ -66,7 +66,7 @@ def create_task(task: TaskCreate):  # Use TaskCreate (no ID required)
         "required_skill": task.required_skill,
         "priority": task.priority,
         "status": "pending",
-        "assigned_to": None
+        "assigned_to": task.assigned_to
     }
 
     tasks.append(new_task)

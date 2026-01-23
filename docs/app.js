@@ -285,11 +285,18 @@ document.getElementById('task-form').addEventListener('submit', async (e) => {
     showLoading();
 
     try {
+        const assignedTo = document.getElementById('task-technician').value;
+
+        if (!assignedTo) {
+            showNotification('Please select a technician first', 'error');
+            return;
+        }
+
         const taskData = {
             task_type: document.getElementById('task-type').value.trim(),
             required_skill: document.getElementById('required-skill').value,
             priority: document.getElementById('priority').value,
-            assigned_to: document.getElementById('task-technician').value || null
+            assigned_to: assignedTo
         };
 
         console.log('Sending task data:', taskData);
@@ -330,4 +337,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Auto-refresh every 10 seconds
-setInterval(refreshUI, 10000);
+setInterval(loadTasks, 10000);

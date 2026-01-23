@@ -22,5 +22,21 @@
     "priority": "Urgent",
     "status": "pending",
     "assigned_to": null
+  },
+  {
+    "id": "05441342-905f-4ce1-b15a-cfc5bdd859f6",
+    "task_type": "Blood group P33",
+    "required_skill": "Blood group",
+    "priority": "Routine",
+    "status": "pending",
+    "assigned_to": null
+  },
+  {
+    "id": "6176cabb-1a30-40dd-934f-2b127085939a",
+    "task_type": "Blood group P88",
+    "required_skill": "Blood group",
+    "priority": "Routine",
+    "status": "pending",
+    "assigned_to": null
   }
 ]

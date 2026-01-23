@@ -46,35 +46,32 @@ function showNotification(message, type = 'success') {
 }
 
 /* -------------------- TECHNICIANS -------------------- */
-
 async function loadTechnicians() {
     try {
         console.log('Loading technicians...');
+
         const technicians = await apiFetch(`${API_BASE}/technicians`);
         techniciansCache = technicians;
+
         const list = document.getElementById('techniciansList');
         const count = document.getElementById('techCount');
+        const select = document.getElementById('task-technician');
 
+        /* ---------- empty state ---------- */
         if (!technicians || technicians.length === 0) {
             list.innerHTML = '<li class="empty-state">No technicians available</li>';
             count.textContent = '0';
+
+            if (select) {
+                select.innerHTML = '<option value="">Select technician...</option>';
+            }
+
             return;
         }
 
+        /* ---------- render technicians list ---------- */
         list.innerHTML = '';
         count.textContent = technicians.length;
-        // 🔽 populate assign technician dropdown
-        const select = document.getElementById('task-technician');
-        if (select) {
-            select.innerHTML = '<option value="">Select technician...</option>';
-
-            technicians.forEach(tech => {
-                const option = document.createElement('option');
-                option.value = tech.code_name;
-                option.textContent = tech.code_name;
-                select.appendChild(option);
-            });
-        }
 
         technicians.forEach(tech => {
             const li = document.createElement('li');
@@ -100,12 +97,33 @@ async function loadTechnicians() {
             list.appendChild(li);
         });
 
+        /* ---------- populate dropdown ---------- */
+        if (select) {
+            const currentValue = select.value;
+
+            select.innerHTML = '<option value="">Select technician...</option>';
+
+            technicians.forEach(tech => {
+                const option = document.createElement('option');
+                option.value = tech.code_name;
+                option.textContent = tech.code_name;
+
+                if (tech.code_name === currentValue) {
+                    option.selected = true;
+                }
+
+                select.appendChild(option);
+            });
+        }
+
         console.log('Technicians loaded successfully');
+
     } catch (error) {
         console.error('Error loading technicians:', error);
         showNotification('Failed to load technicians: ' + error.message, 'error');
     }
 }
+
 
 /* -------------------- DELETE TECHNICIAN -------------------- */
 

@@ -29,6 +29,10 @@ class Task(BaseModel):
     id: str
     task_type: str
     required_skill: str
-    priority: str  # Routine | Urgent | Emergency
+    priority: str
     status: str = "pending"
     assigned_to: Optional[str] = None
+
+    started_at: Optional[datetime] = None
+    completed_at: Optional[datetime] = None
+    duration_seconds: Optional[int] = 0

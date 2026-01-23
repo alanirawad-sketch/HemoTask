@@ -1,3 +1,37 @@
+function formatTime(seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+function startLiveTimer(el, startedAt) {
+    const start = new Date(startedAt);
+
+    function update() {
+        const now = new Date();
+        const diff = Math.floor((now - start) / 1000);
+        el.textContent = formatTime(diff);
+    }
+
+    update();
+    setInterval(update, 1000);
+}
+
+async function startTask(id, techId) {
+    await apiFetch(`${API_BASE}/tasks/${id}/start?technician_id=${techId}`, {
+        method: "POST"
+    });
+    loadTasks();
+}
+
+async function completeTask(id, techId) {
+    await apiFetch(`${API_BASE}/tasks/${id}/complete?technician_id=${techId}`, {
+        method: "POST"
+    });
+    loadTasks();
+}
+
+
 const API_BASE = "http://127.0.0.1:8000";
 let techniciansCache = [];
 
@@ -220,22 +254,51 @@ async function loadTasks() {
 
             const statusClass = `status-${task.status.toLowerCase()}`;
 
+            let timerHTML = '';
+            let actionButtons = '';
+
+            if (task.status === "In Progress" && task.started_at) {
+                timerHTML = `<small>⏱ Time: <span id="timer-${task.id}">00:00</span></small>`;
+                actionButtons = `
+            <button onclick="completeTask('${task.id}', '${task.assigned_to}')">
+                ✅ Complete
+            </button>
+        `;
+            }
+            else if (task.status === "Assigned") {
+                actionButtons = `
+            <button onclick="startTask('${task.id}', '${task.assigned_to}')">
+                ▶ Start
+            </button>
+        `;
+            }
+            else if (task.status === "Completed") {
+                timerHTML = `<small>✔ Duration: ${formatTime(task.duration_seconds || 0)}</small>`;
+            }
+
             li.innerHTML = `
-                <div class="card-content">
-                    <div>
-                        <strong>${task.task_type}</strong>
-                        <small>Required skill: ${task.required_skill}</small>
-                        <small>Status: <span class="${statusClass}">${task.status.replace('_', ' ')}</span></small>
-                        <small>Assigned to: ${task.assigned_to || '—'}</small>
-                    </div>
-                    <button class="delete-btn" onclick="deleteTask(${task.task_id})">
-                        🗑️
-                    </button>
-                </div>
-            `;
+        <div class="card-content">
+            <div>
+                <strong>${task.task_type}</strong>
+                <small>Required skill: ${task.required_skill}</small>
+                <small>Status: <span class="${statusClass}">${task.status}</span></small>
+                <small>Assigned to: ${task.assigned_to || '—'}</small>
+                ${timerHTML}
+            </div>
+            ${actionButtons}
+        </div>
+    `;
 
             list.appendChild(li);
+
+            if (task.status === "In Progress" && task.started_at) {
+                startLiveTimer(
+                    document.getElementById(`timer-${task.id}`),
+                    task.started_at
+                );
+            }
         });
+
 
         console.log('Tasks loaded successfully');
     } catch (error) {

@@ -198,7 +198,14 @@ def complete_task(task_id: str, technician_id: str):
     tech = next(t for t in technicians if t["id"] == technician_id)
 
     task["status"] = "Completed"
-    task["completed_at"] = datetime.utcnow().isoformat()
+    now = datetime.utcnow()
+    task["completed_at"] = now.isoformat()
+
+# calculate duration
+    if task.get("started_at"):
+        start = datetime.fromisoformat(task["started_at"])
+    task["duration_seconds"] = int((now - start).total_seconds())
+
     tech["active_tasks"] -= 1
 
     save_tasks(tasks)

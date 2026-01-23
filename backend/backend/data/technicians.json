@@ -22,5 +22,13 @@
       "Blood group"
     ],
     "active_tasks": 0
+  },
+  {
+    "id": "ec837e2c-c1d5-45b1-8a37-9a750a98248c",
+    "code_name": "TECH 004",
+    "skills": [
+      "Crossmatch"
+    ],
+    "active_tasks": 0
   }
 ]

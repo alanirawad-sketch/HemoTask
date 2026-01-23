@@ -46,5 +46,13 @@
     "priority": "Routine",
     "status": "pending",
     "assigned_to": null
+  },
+  {
+    "id": "13389d97-ceff-4dde-99f8-f12dc8fa9b07",
+    "task_type": "Crossmatch P13",
+    "required_skill": "Crossmatch",
+    "priority": "Emergency",
+    "status": "pending",
+    "assigned_to": "TECH 004"
   }
 ]

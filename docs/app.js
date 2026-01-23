@@ -1,4 +1,6 @@
 const API_BASE = "http://127.0.0.1:8000";
+let techniciansCache = [];
+
 
 /* -------------------- UTILITIES -------------------- */
 
@@ -49,6 +51,7 @@ async function loadTechnicians() {
     try {
         console.log('Loading technicians...');
         const technicians = await apiFetch(`${API_BASE}/technicians`);
+        techniciansCache = technicians;
         const list = document.getElementById('techniciansList');
         const count = document.getElementById('techCount');
 
@@ -60,6 +63,18 @@ async function loadTechnicians() {
 
         list.innerHTML = '';
         count.textContent = technicians.length;
+        // 🔽 populate assign technician dropdown
+        const select = document.getElementById('task-technician');
+        if (select) {
+            select.innerHTML = '<option value="">Select technician...</option>';
+
+            technicians.forEach(tech => {
+                const option = document.createElement('option');
+                option.value = tech.code_name;
+                option.textContent = tech.code_name;
+                select.appendChild(option);
+            });
+        }
 
         technicians.forEach(tech => {
             const li = document.createElement('li');
@@ -255,7 +270,8 @@ document.getElementById('task-form').addEventListener('submit', async (e) => {
         const taskData = {
             task_type: document.getElementById('task-type').value.trim(),
             required_skill: document.getElementById('required-skill').value,
-            priority: document.getElementById('priority').value
+            priority: document.getElementById('priority').value,
+            assigned_to: document.getElementById('task-technician').value || null
         };
 
         console.log('Sending task data:', taskData);
